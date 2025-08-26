@@ -144,6 +144,20 @@ header p {
     font-size: 1.2em; /* Tamaño de fuente para el texto */
     color: #333; /* Color gris oscuro */
     margin-bottom: 10px; /* Espacio inferior */
+    font-family: Arial, "Segoe UI Emoji", sans-serif; /* Soporte para emojis */
+}
+
+.raffle-info ul {
+    list-style: none; /* Quita los puntos predeterminados */
+    padding-left: 0; /* Sin sangría */
+    margin-bottom: 15px; /* Espacio inferior */
+}
+
+.raffle-info li {
+    font-size: 1.2em; /* Igual que .raffle-info p */
+    color: #333; /* Igual que .raffle-info p */
+    margin-bottom: 10px; /* Espacio entre ítems */
+    font-family: Arial, "Segoe UI Emoji", sans-serif; /* Soporte para emojis */
 }
 
 /* Estilos del modal */
@@ -230,7 +244,7 @@ header p {
 
 #modal-price {
     font-weight: bold; /* Precio total en negritas */
-    color: red; /* Precio total en rojo */
+    color: #e74c3c; /* Color rojo coherente con toast y #clear-button */
 }
 
 /* Estilos para el mensaje flotante (toast) */
@@ -311,6 +325,12 @@ header p {
 
     .raffle-info p {
         font-size: 1em; /* Reduce el tamaño del texto */
+        font-family: Arial, "Segoe UI Emoji", sans-serif; /* Soporte para emojis */
+    }
+
+    .raffle-info li {
+        font-size: 1em; /* Igual que .raffle-info p */
+        font-family: Arial, "Segoe UI Emoji", sans-serif; /* Soporte para emojis */
     }
 
     .modal-content {
@@ -378,6 +398,12 @@ header p {
 
     .raffle-info p {
         font-size: 0.9em; /* Reduce el tamaño del texto */
+        font-family: Arial, "Segoe UI Emoji", sans-serif; /* Sopuste para emojis */
+    }
+
+    .raffle-info li {
+        font-size: 0.9em; /* Igual que .raffle-info p */
+        font-family: Arial, "Segoe UI Emoji", sans-serif; /* Soporte para emojis */
     }
 
     .modal-content h2 {

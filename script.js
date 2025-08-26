@@ -71,9 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Mostrar números seleccionados, ordenados numéricamente
             selectedNumbersDisplay.textContent = `Números seleccionados: ${selectedNumbers.sort((a, b) => a - b).join(', ')}`;
         }
-        // Calcular y mostrar el precio total ($25 por número)
-        const totalPrice = selectedNumbers.length * 25;
-        totalPriceDisplay.textContent = `Precio total: $${totalPrice}`;
+        // Calcular y mostrar el precio total ($80 por número)
+        const totalPrice = selectedNumbers.length * 80;
+        totalPriceDisplay.textContent = `Precio total: $${totalPrice.toFixed(2)}`; // Mostrar con 2 decimales
     }
 
     // Añadir evento de clic a cada celda de la tabla
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Mostrar números seleccionados en el modal (en negritas)
         modalNumbers.innerHTML = `Números seleccionados: <strong>${selectedNumbers.sort((a, b) => a - b).join(', ')}</strong>`;
         // Mostrar precio total en el modal (en negritas y rojo)
-        modalPrice.innerHTML = `Precio total: <strong>$${selectedNumbers.length * 25}</strong>`;
+        modalPrice.innerHTML = `Precio total: <strong>$${selectedNumbers.length * 80}.00</strong>`;
         // Mostrar el modal
         modal.style.display = 'block';
         console.log('Modal abierto'); // Depuración
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const phone = document.getElementById('phone').value;
-        const totalPrice = selectedNumbers.length * 25;
+        const totalPrice = selectedNumbers.length * 80; // Calcular precio total ($80 por número)
 
         console.log('Formulario enviado:', { name, email, phone, numbers: selectedNumbers, totalPrice }); // Depuración
 
