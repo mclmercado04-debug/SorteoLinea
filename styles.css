@@ -1,0 +1,370 @@
+/* Reset de estilos básicos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos generales del cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Estilos del encabezado */
+header {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #7f8c8d;
+}
+
+/* Estilos de la tabla */
+.rifa-table {
+    border-collapse: separate;
+    border-spacing: 10px;
+    width: 100%;
+    background-color: rgba(128, 128, 128, 0.25);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    table-layout: fixed;
+}
+
+.rifa-table td {
+    border: 2px solid #000;
+    width: 20%;
+    aspect-ratio: 1 / 1;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #0000FF;
+    background-color: rgba(128, 128, 128, 0.25);
+    padding: 15px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.rifa-table td:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.rifa-table td.selected {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.rifa-table td.blocked {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #333;
+    cursor: not-allowed;
+}
+
+/* Estilos del contenedor de botones */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    width: 100%;
+}
+
+.button-container button {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#clear-button {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+#clear-button:hover {
+    background-color: #c0392b;
+}
+
+#continue-button {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+#continue-button:hover {
+    background-color: #27ae60;
+}
+
+/* Estilos de la sección de números seleccionados */
+.selection-info {
+    text-align: left;
+    width: 100%;
+}
+
+.selection-info h2 {
+    font-size: 1.8em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.selection-info p {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
+
+/* Estilos de la sección de información de la rifa */
+.raffle-info {
+    text-align: left;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.raffle-info h2 {
+    font-size: 1.8em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.raffle-info p {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Estilos del modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    width: 90%;
+    max-width: 500px;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #333;
+}
+
+.modal-content h2 {
+    font-size: 1.8em;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-content label {
+    font-size: 1.1em;
+    color: #333;
+}
+
+.modal-content input {
+    padding: 8px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    padding: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: #27ae60;
+}
+
+/* Estilos para los números seleccionados y precio total en el modal */
+#modal-numbers {
+    font-weight: bold;
+}
+
+#modal-price {
+    font-weight: bold;
+    color: red;
+}
+
+/* Estilos responsivos */
+@media (max-width: 600px) {
+    .rifa-table {
+        width: 100%;
+        border-spacing: 8px;
+    }
+
+    .rifa-table td {
+        font-size: 1.4em;
+        border: 1px solid #000;
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    header p {
+        font-size: 1em;
+    }
+
+    .button-container {
+        width: 100%;
+    }
+
+    .button-container button {
+        padding: 8px 15px;
+        font-size: 1em;
+    }
+
+    .selection-info {
+        width: 100%;
+    }
+
+    .selection-info h2 {
+        font-size: 1.5em;
+    }
+
+    .selection-info p {
+        font-size: 1em;
+    }
+
+    .raffle-info {
+        width: 100%;
+    }
+
+    .raffle-info h2 {
+        font-size: 1.5em;
+    }
+
+    .raffle-info p {
+        font-size: 1em;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 20% auto;
+    }
+
+    .modal-content h2 {
+        font-size: 1.5em;
+    }
+
+    .modal-content p {
+        font-size: 1em;
+    }
+
+    .modal-content label {
+        font-size: 1em;
+    }
+
+    .modal-content input {
+        font-size: 0.9em;
+    }
+
+    .modal-content button {
+        font-size: 1em;
+    }
+
+    body {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    .rifa-table td {
+        font-size: 1.1em;
+        padding: 8px;
+    }
+
+    .rifa-table {
+        border-spacing: 6px;
+    }
+
+    .button-container button {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+
+    .selection-info h2 {
+        font-size: 1.3em;
+    }
+
+    .selection-info p {
+        font-size: 0.9em;
+    }
+
+    .raffle-info h2 {
+        font-size: 1.3em;
+    }
+
+    .raffle-info p {
+        font-size: 0.9em;
+    }
+
+    .modal-content h2 {
+        font-size: 1.3em;
+    }
+
+    .modal-content p {
+        font-size: 0.9em;
+    }
+
+    .modal-content label {
+        font-size: 0.9em;
+    }
+
+    .modal-content input {
+        font-size: 0.8em;
+    }
+
+    .modal-content button {
+        font-size: 0.9em;
+    }
+}
