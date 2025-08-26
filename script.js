@@ -1,5 +1,5 @@
 // Importar funciones necesarias desde firebaseconect.js
-import { listenBlockedNumbers, validateBlockedNumbers, saveParticipation, saveBlockedNumbers, resetBlockedNumbers } from './firebaseconect.js';
+import { listenBlockedNumbers, validateBlockedNumbers, saveParticipation, saveBlockedNumbers } from './firebaseconect.js';
 
 // Esperar a que el DOM esté completamente cargado antes de ejecutar el código
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalNumbers = document.getElementById('modal-numbers'); // Elemento para mostrar números en el modal
     const modalPrice = document.getElementById('modal-price'); // Elemento para mostrar el precio en el modal
     const participationForm = document.getElementById('participation-form'); // Formulario del modal
-    const resetBlockedButton = document.getElementById('reset-blocked'); // Botón "Reiniciar Números"
 
     // Depuración: Verificar que las celdas se encuentren (debería ser 25)
     console.log('Celdas encontradas:', cells.length);
@@ -177,20 +176,4 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Error al registrar. Intenta de nuevo.');
         }
     });
-
-    // Añadir evento para el botón "Reiniciar Números"
-    if (resetBlockedButton) {
-        resetBlockedButton.addEventListener('click', async () => {
-            try {
-                // Reiniciar la colección numeros_bloqueados en Firestore
-                await resetBlockedNumbers();
-                alert('Números bloqueados reiniciados');
-                console.log('Números bloqueados reiniciados'); // Depuración
-            } catch (error) {
-                // Manejar errores al reiniciar
-                console.error('Error al reiniciar números bloqueados:', error);
-                alert('Error al reiniciar. Intenta de nuevo.');
-            }
-        });
-    }
 });
