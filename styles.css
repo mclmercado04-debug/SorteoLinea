@@ -150,8 +150,10 @@ header p {
 .modal {
     display: none; /* Oculta el modal por defecto */
     position: fixed; /* Fija el modal en la pantalla */
-    top: 0; left: 0; /* Cubre toda la pantalla */
-    width: 100%; height: 100%; /* Ocupa todo el ancho y alto */
+    top: 0;
+    left: 0; /* Cubre toda la pantalla */
+    width: 100%;
+    height: 100%; /* Ocupa todo el ancho y alto */
     background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
     z-index: 1000; /* Asegura que el modal esté sobre otros elementos */
 }
@@ -168,7 +170,8 @@ header p {
 
 .close {
     position: absolute; /* Posiciona el botón de cerrar en la esquina superior derecha */
-    top: 10px; right: 15px;
+    top: 10px;
+    right: 15px;
     font-size: 1.5em; /* Tamaño de fuente para el símbolo de cerrar (×) */
     cursor: pointer; /* Cursor de mano */
     color: #333; /* Color gris oscuro */
@@ -228,6 +231,32 @@ header p {
 #modal-price {
     font-weight: bold; /* Precio total en negritas */
     color: red; /* Precio total en rojo */
+}
+
+/* Estilos para el mensaje flotante (toast) */
+.toast {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Fijo en la pantalla */
+    top: 20px; /* 20px desde la parte superior */
+    left: 50%; /* Centrado horizontalmente */
+    transform: translateX(-50%); /* Ajuste para centrar */
+    background-color: #e74c3c; /* Fondo rojo */
+    color: #fff; /* Texto blanco */
+    padding: 10px 20px; /* Espacio interior */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 1em; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negritas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    z-index: 2000; /* Por encima del modal */
+    animation: fadeInOut 3s ease-in-out; /* Animación de 3 segundos */
+}
+
+/* Animación para que el toast aparezca y desaparezca */
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, -20px); } /* Comienza invisible y arriba */
+    10% { opacity: 1; transform: translate(-50%, 0); } /* Aparece completamente */
+    90% { opacity: 1; transform: translate(-50%, 0); } /* Permanece visible */
+    100% { opacity: 0; transform: translate(-50%, -20px); } /* Desaparece */
 }
 
 /* Estilos responsivos para pantallas de hasta 600px (móviles medianos) */
@@ -312,6 +341,11 @@ header p {
     body {
         padding: 10px; /* Reduce el espacio interior del cuerpo */
     }
+
+    .toast {
+        font-size: 0.9em; /* Tamaño de fuente más pequeño */
+        padding: 8px 15px; /* Menor espacio interior */
+    }
 }
 
 /* Estilos responsivos para pantallas de hasta 400px (móviles pequeños) */
@@ -364,5 +398,10 @@ header p {
 
     .modal-content button {
         font-size: 0.9em; /* Reduce el tamaño del botón */
+    }
+
+    .toast {
+        font-size: 0.8em; /* Tamaño de fuente aún más pequeño */
+        padding: 6px 12px; /* Menor espacio interior */
     }
 }
