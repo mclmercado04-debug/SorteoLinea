@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalNumbers = document.getElementById('modal-numbers'); // Elemento para mostrar números en el modal
     const modalPrice = document.getElementById('modal-price'); // Elemento para mostrar el precio en el modal
     const participationForm = document.getElementById('participation-form'); // Formulario del modal
+    const toast = document.getElementById('toast'); // Elemento para el mensaje flotante
 
     // Depuración: Verificar que las celdas se encuentren (debería ser 25)
     console.log('Celdas encontradas:', cells.length);
@@ -49,6 +50,17 @@ document.addEventListener('DOMContentLoaded', () => {
         updateUI();
     });
 
+    // Función para mostrar el mensaje flotante (toast)
+    function showToast(message) {
+        toast.textContent = message; // Establecer el mensaje
+        toast.style.display = 'block'; // Mostrar el toast
+        console.log('Toast mostrado:', message); // Depuración
+        // Ocultar el toast después de la animación (3 segundos)
+        setTimeout(() => {
+            toast.style.display = 'none';
+        }, 3000);
+    }
+
     // Función para actualizar la interfaz (números seleccionados y precio total)
     function updateUI() {
         console.log('Actualizando UI, selectedNumbers:', selectedNumbers); // Depuración
@@ -70,7 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const number = parseInt(cell.textContent); // Obtener el número de la celda
             console.log(`Clic en celda ${number}`); // Depuración
             if (cell.classList.contains('blocked')) {
-                // Si la celda está bloqueada, no hacer nada
+                // Mostrar toast si la celda está bloqueada
+                showToast('Número ya comprado.');
                 console.log(`Celda ${number} bloqueada, no se puede seleccionar`); // Depuración
                 return;
             }
