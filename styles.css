@@ -273,6 +273,24 @@ header p {
     100% { opacity: 0; transform: translate(-50%, -20px); } /* Desaparece */
 }
 
+/* Estilos para el cronómetro */
+.timer {
+    text-align: center; /* Centra el texto */
+    font-size: 1.2em; /* Tamaño de fuente */
+    color: #e74c3c; /* Rojo para destacar */
+    margin: 15px 0; /* Margen superior e inferior */
+    font-weight: bold; /* Texto en negritas */
+    font-family: Arial, "Segoe UI Emoji", sans-serif; /* Soporte para emojis */
+}
+
+#numbers-left-text {
+    margin-bottom: 5px; /* Espacio entre el texto y el cronómetro */
+}
+
+#countdown {
+    font-family: monospace; /* Fuente monoespaciada para el cronómetro */
+}
+
 /* Estilos responsivos para pantallas de hasta 600px (móviles medianos) */
 @media (max-width: 600px) {
     .rifa-table {
@@ -366,6 +384,10 @@ header p {
         font-size: 0.9em; /* Tamaño de fuente más pequeño */
         padding: 8px 15px; /* Menor espacio interior */
     }
+
+    .timer {
+        font-size: 1em; /* Reduce el tamaño de fuente */
+    }
 }
 
 /* Estilos responsivos para pantallas de hasta 400px (móviles pequeños) */
@@ -398,7 +420,7 @@ header p {
 
     .raffle-info p {
         font-size: 0.9em; /* Reduce el tamaño del texto */
-        font-family: Arial, "Segoe UI Emoji", sans-serif; /* Sopuste para emojis */
+        font-family: Arial, "Segoe UI Emoji", sans-serif; /* Soporte para emojis */
     }
 
     .raffle-info li {
@@ -429,5 +451,9 @@ header p {
     .toast {
         font-size: 0.8em; /* Tamaño de fuente aún más pequeño */
         padding: 6px 12px; /* Menor espacio interior */
+    }
+
+    .timer {
+        font-size: 0.9em; /* Reduce el tamaño de fuente */
     }
 }

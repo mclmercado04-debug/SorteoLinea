@@ -28,12 +28,14 @@ export function listenBlockedNumbers(callback) {
             const blockedNumbers = []; // Array para almacenar los números bloqueados
             // Iterar sobre cada documento en la colección
             snapshot.forEach((doc) => {
-                const data = doc.data().numeros; // Obtener el campo 'numeros' del documento
-                if (Array.isArray(data)) {
-                    // Si 'numeros' es un array, añadir sus elementos al array blockedNumbers
-                    blockedNumbers.push(...data);
+                const number = doc.data().number; // Obtener el campo 'number' del documento
+                if (number && !blockedNumbers.includes(number)) {
+                    // Añadir el número si existe y no está ya en el array (evita duplicados)
+                    blockedNumbers.push(number);
                 }
             });
+            // Ordenar los números para consistencia
+            blockedNumbers.sort((a, b) => a - b);
             // Depuración: Mostrar los números bloqueados en la consola
             console.log('Números bloqueados:', blockedNumbers);
             // Llamar al callback con los números bloqueados
@@ -55,10 +57,10 @@ export async function validateBlockedNumbers(numbers) {
         const blockedNumbers = []; // Array para almacenar los números bloqueados
         // Iterar sobre los documentos
         blockedNumbersSnapshot.forEach((doc) => {
-            const data = doc.data().numeros; // Obtener el campo 'numeros'
-            if (Array.isArray(data)) {
-                // Si es un array, añadir sus elementos a blockedNumbers
-                blockedNumbers.push(...data);
+            const number = doc.data().number; // Obtener el campo 'number'
+            if (number && !blockedNumbers.includes(number)) {
+                // Añadir el número si existe y no está ya en el array
+                blockedNumbers.push(number);
             }
         });
         // Depuración: Mostrar los números bloqueados en la consola
@@ -85,7 +87,7 @@ export async function saveParticipation({ name, email, phone, numbers, totalPric
             timestamp: serverTimestamp() // Fecha y hora del servidor
         });
         // Depuración: Confirmar que la participación se guardó
-        console.log('Participación guardada con éxito');
+        console.log('Participación guardada con éxito:', { name, email, phone, numbers, totalPrice });
     } catch (error) {
         // Manejar errores al guardar la participación
         console.error('Error al guardar participación:', error);
@@ -96,13 +98,18 @@ export async function saveParticipation({ name, email, phone, numbers, totalPric
 // Función para guardar números bloqueados en Firestore
 export async function saveBlockedNumbers(numbers) {
     try {
-        // Añadir un nuevo documento a la colección 'numeros_bloqueados'
-        await addDoc(collection(db, 'numeros_bloqueados'), {
-            numeros: numbers, // Array de números a bloquear
-            timestamp: serverTimestamp() // Fecha y hora del servidor
-        });
+        // Guardar cada número como un documento individual
+        const blockedNumbersRef = collection(db, 'numeros_bloqueados');
+        const promises = numbers.map(number => 
+            addDoc(blockedNumbersRef, {
+                number, // Guardar un solo número por documento
+                timestamp: serverTimestamp() // Fecha y hora del servidor
+            })
+        );
+        // Esperar a que todas las promesas se resuelvan
+        await Promise.all(promises);
         // Depuración: Confirmar que los números se guardaron
-        console.log('Números bloqueados guardados con éxito');
+        console.log('Números bloqueados guardados con éxito:', numbers);
     } catch (error) {
         // Manejar errores al guardar los números bloqueados
         console.error('Error al guardar números bloqueados:', error);
@@ -127,4 +134,3 @@ export async function resetBlockedNumbers() {
         throw error; // Lanzar el error para manejarlo en el llamador
     }
 }
-

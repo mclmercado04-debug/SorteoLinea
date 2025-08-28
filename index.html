@@ -1,123 +1,78 @@
 <!DOCTYPE html>
-<!-- Declara que el documento es HTML5 -->
 <html lang="es">
-<!-- Define el idioma del documento como español -->
 <head>
-    <!-- Metadatos y enlaces a recursos externos -->
     <meta charset="UTF-8">
-    <!-- Establece la codificación de caracteres a UTF-8 para soportar acentos y caracteres especiales -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Hace que la página sea responsiva, ajustándose al ancho del dispositivo -->
-    <title>Rifa de Números</title>
-    <!-- Título de la página que aparece en la pestaña del navegador -->
+    <title>Rifa de N�meros</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Enlaza el archivo styles.css para los estilos visuales de la página -->
 </head>
 <body>
-    <!-- Contenido principal de la página -->
     <header>
-        <!-- Encabezado de la página -->
-        <h1>Rifa de Números</h1>
-        <!-- Título principal de la página -->
-        <p>Elige tu número favorito</p>
-        <!-- Texto descriptivo debajo del título -->
+        <h1>Rifa de N�meros</h1>
+        <p>Elige tu n�mero favorito</p>
     </header>
     <main>
-        <!-- Contenido principal de la aplicación -->
         <table class="rifa-table">
-            <!-- Tabla de 5x5 con números del 1 al 25 para la selección -->
             <tr>
-                <!-- Primera fila de la tabla -->
                 <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td>
-                <!-- Celdas con números del 1 al 5 -->
             </tr>
             <tr>
-                <!-- Segunda fila de la tabla -->
                 <td>6</td><td>7</td><td>8</td><td>9</td><td>10</td>
-                <!-- Celdas con números del 6 al 10 -->
             </tr>
             <tr>
-                <!-- Tercera fila de la tabla -->
                 <td>11</td><td>12</td><td>13</td><td>14</td><td>15</td>
-                <!-- Celdas con números del 11 al 15 -->
             </tr>
             <tr>
-                <!-- Cuarta fila de la tabla -->
                 <td>16</td><td>17</td><td>18</td><td>19</td><td>20</td>
-                <!-- Celdas con números del 16 al 20 -->
             </tr>
             <tr>
-                <!-- Quinta fila de la tabla -->
                 <td>21</td><td>22</td><td>23</td><td>24</td><td>25</td>
-                <!-- Celdas con números del 21 al 25 -->
             </tr>
         </table>
         <div class="button-container">
-            <!-- Contenedor para los botones de interacción -->
             <button id="clear-button">Borrar</button>
-            <!-- Botón para deseleccionar todos los números -->
             <button id="continue-button">Continuar</button>
-            <!-- Botón para abrir el modal y registrar la participación -->
         </div>
         <section class="selection-info">
-            <!-- Sección para mostrar los números seleccionados y el precio total -->
-            <h2>Números Seleccionados</h2>
-            <!-- Título de la sección -->
-            <p id="selected-numbers">Ningún número seleccionado</p>
-            <!-- Muestra los números seleccionados (actualizado por JavaScript) -->
+            <h2>N�meros Seleccionados</h2>
+            <p id="selected-numbers">Ning�n n�mero seleccionado</p>
             <p id="total-price">Precio total: $0</p>
-            <!-- Muestra el precio total (actualizado por JavaScript, $80 por número) -->
         </section>
         <section class="raffle-info">
-            <!-- Sección con información general de la rifa -->
-            <h2>Información de la Rifa</h2>
-            <!-- Título de la sección -->
+            <h2>Informaci�n de la Rifa</h2>
             <p><strong>Premio a ganar:</strong></p>
             <ul>
-                <li>👉 Solo 25 números disponibles.</li>
-                <li>👉 Costo por número: $80.00</li>
-                <li>👉 Premio garantizado: $1,000.00 en efectivo 💵</li>
-                <li>👉 ¡Tu oportunidad es enorme! 1 de cada 25 es ganador.</li>
+                <li> Solo 25 n�meros disponibles.</li>
+                <li> Costo por n�mero: $80.00</li>
+                <li> Premio garantizado: $1,000.00 en efectivo </li>
+                <li> �Tu oportunidad es enorme! 1 de cada 25 es ganador.</li>
             </ul>
-            <p><strong>Instrucciones para participar:</strong> Selecciona uno o más números de la tabla. Cada número tiene un costo de $80.00. Una vez seleccionados tus números, haz clic en "Continuar" para registrar tu participación. Se te enviará un link de pago para pagar en línea y también una cuenta para hacer transferencia. Los números serán sorteados al agotarse. Saldrá un cronómetro anunciando el momento exacto del sorteo. ¡Buena suerte!</p>
+            <p><strong>Instrucciones para participar:</strong> Selecciona uno o m�s n�meros de la tabla. Cada n�mero tiene un costo de $80.00. Una vez seleccionados tus n�meros, haz clic en "Continuar" para registrar tu participaci�n. Se te enviar� un link de pago para pagar en l�nea y tambi�n una cuenta para hacer transferencia. Los n�meros ser�n sorteados al agotarse. Saldr� un cron�metro anunciando el momento exacto del sorteo. �Buena suerte!</p>
         </section>
-        <!-- Modal para el formulario de registro -->
         <div id="modal" class="modal">
-            <!-- Contenedor del modal, oculto por defecto -->
             <div class="modal-content">
-                <!-- Contenido del modal -->
                 <span id="close-modal" class="close">&times;</span>
-                <!-- Botón para cerrar el modal (X) -->
-                <h2>Confirmar Participación</h2>
-                <!-- Título del modal -->
+                <h2>Confirmar Participaci�n</h2>
                 <p id="modal-numbers"></p>
-                <!-- Muestra los números seleccionados en negritas (actualizado por JavaScript) -->
                 <p id="modal-price"></p>
-                <!-- Muestra el precio total en negritas y rojo (actualizado por JavaScript) -->
                 <form id="participation-form">
-                    <!-- Formulario para registrar la participación -->
                     <label for="name">Nombre:</label>
-                    <!-- Etiqueta para el campo de nombre -->
                     <input type="text" id="name" name="name" required>
-                    <!-- Campo de entrada para el nombre, obligatorio -->
-                    <label for="email">Correo Electrónico:</label>
-                    <!-- Etiqueta para el campo de correo -->
+                    <label for="email">Correo Electr�nico:</label>
                     <input type="email" id="email" name="email" required>
-                    <!-- Campo de entrada para el correo, obligatorio -->
-                    <label for="phone">Teléfono:</label>
-                    <!-- Etiqueta para el campo de teléfono -->
+                    <label for="phone">Tel�fono:</label>
                     <input type="tel" id="phone" name="phone">
-                    <!-- Campo de entrada para el teléfono, opcional -->
                     <button type="submit">Participar</button>
-                    <!-- Botón para enviar el formulario -->
                 </form>
             </div>
+        </div>
+        <div id="timer" class="timer">
+            <p id="numbers-left-text">Faltan 25 para iniciar el sorteo</p>
+            <p id="countdown">00h 00m 00s</p>
         </div>
         <div id="toast" class="toast"></div>
     </main>
     <script type="module" src="firebaseconect.js"></script>
-    <!-- Carga el archivo firebaseconect.js como módulo para la conexión a Firebase -->
     <script type="module" src="script.js"></script>
-    <!-- Carga el archivo script.js como módulo para la lógica de la aplicación -->
 </body>
 </html>
