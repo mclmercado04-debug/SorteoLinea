@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
             await saveBlockedNumbers(selectedNumbers);
 
             // Enviar mensaje a WhatsApp
-            const yourPhoneNumber = '+1234567890'; // Reemplaza con tu número de WhatsApp (ej. +525512345678)
+            const yourPhoneNumber = '+529996172863'; // Reemplaza con tu número de WhatsApp (ej. +525512345678)
             const message = `Nueva participación en la rifa:\nNombre: ${name}\nCorreo: ${email}\nTeléfono: ${phone || 'No proporcionado'}\nNúmeros: ${selectedNumbers.join(', ')}\nTotal: $${totalPrice.toFixed(2)}`;
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/${yourPhoneNumber}?text=${encodedMessage}`;
