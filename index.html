@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rifa de Números</title>
+    <title>Rifa de NÃºmeros</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
     <script>eruda.init();</script>
 </head>
 <body>
     <header>
-        <h1>Rifa de Números</h1>
-        <p>Elige tu número favorito</p>
+        <h1>Rifa de NÃºmeros</h1>
+        <p>Elige tu nÃºmero favorito</p>
     </header>
     <main>
         <table class="rifa-table">
@@ -36,33 +36,33 @@
             <button id="continue-button">Continuar</button>
         </div>
         <section class="selection-info">
-            <h2>Números Seleccionados</h2>
-            <p id="selected-numbers">Ningún número seleccionado</p>
+            <h2>NÃºmeros Seleccionados</h2>
+            <p id="selected-numbers">NingÃºn nÃºmero seleccionado</p>
             <p id="total-price">Precio total: $0</p>
         </section>
         <section class="raffle-info">
-            <h2>Información de la Rifa</h2>
+            <h2>InformaciÃ³n de la Rifa</h2>
             <p><strong>Premio a ganar:</strong></p>
             <ul>
-                <li> Solo 25 números disponibles.</li>
-                <li> Costo por número: $80.00</li>
-                <li> Premio garantizado: $1,000.00 en efectivo </li>
-                <li> ¡Tu oportunidad es enorme! 1 de cada 25 es ganador.</li>
+                <li>ðŸ‘‰ Solo 25 nÃºmeros disponibles.</li>
+                <li>ðŸ‘‰ Costo por nÃºmero: $80.00</li>
+                <li>ðŸ‘‰ Premio garantizado: $1,000.00 en efectivo ðŸ’µ</li>
+                <li>ðŸ‘‰ Â¡Tu oportunidad es enorme! 1 de cada 25 es ganador.</li>
             </ul>
-            <p><strong>Instrucciones para participar:</strong> Selecciona uno o más números de la tabla. Cada número tiene un costo de $80.00. Una vez seleccionados tus números, haz clic en "Continuar" para registrar tu participación. Se te enviará un link de pago para pagar en línea y también una cuenta para hacer transferencia. Los números serán sorteados al agotarse. Saldrá un cronómetro anunciando el momento exacto del sorteo. ¡Buena suerte!</p>
+            <p><strong>Instrucciones para participar:</strong> Selecciona uno o mÃ¡s nÃºmeros de la tabla. Cada nÃºmero tiene un costo de $80.00. Una vez seleccionados tus nÃºmeros, haz clic en "Continuar" para registrar tu participaciÃ³n. Se te enviarÃ¡ un link de pago para pagar en lÃ­nea y tambiÃ©n una cuenta para hacer transferencia. Los nÃºmeros serÃ¡n sorteados al agotarse. SaldrÃ¡ un cronÃ³metro anunciando el momento exacto del sorteo. Â¡Buena suerte!</p>
         </section>
         <div id="modal" class="modal">
             <div class="modal-content">
                 <span id="close-modal" class="close">&times;</span>
-                <h2>Confirmar Participación</h2>
+                <h2>Confirmar ParticipaciÃ³n</h2>
                 <p id="modal-numbers"></p>
                 <p id="modal-price"></p>
                 <form id="participation-form">
                     <label for="name">Nombre:</label>
                     <input type="text" id="name" name="name" required>
-                    <label for="email">Correo Electrónico:</label>
+                    <label for="email">Correo ElectrÃ³nico:</label>
                     <input type="email" id="email" name="email" required>
-                    <label for="phone">Teléfono:</label>
+                    <label for="phone">TelÃ©fono:</label>
                     <input type="tel" id="phone" name="phone">
                     <button type="submit">Participar</button>
                 </form>
