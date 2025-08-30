@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
             await saveBlockedNumbers(selectedNumbers);
 
             // Enviar mensaje a WhatsApp
-            const yourPhoneNumber = '+1234567890'; // Reemplaza con tu número de WhatsApp (ej. +525512345678)
+            const yourPhoneNumber = '+529996172863'; // Reemplaza con tu número de WhatsApp (ej. +525512345678)
             const message = `Nueva participación en la rifa:\nNombre: ${name}\nCorreo: ${email}\nTeléfono: ${phone || 'No proporcionado'}\nNúmeros: ${numbersForMessage.length > 0 ? numbersForMessage.sort((a, b) => a - b).join(', ') : 'Ninguno'}\nTotal: $${totalPrice.toFixed(2)}`;
             console.log('Enviando mensaje a WhatsApp, números:', numbersForMessage); // Depuración
             const encodedMessage = encodeURIComponent(message);
@@ -240,3 +240,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
