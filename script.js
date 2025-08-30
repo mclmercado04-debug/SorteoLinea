@@ -188,7 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const phone = document.getElementById('phone').value;
         const totalPrice = selectedNumbers.length * 80; // Calcular precio total ($80 por número)
 
-        console.log('Formulario enviado:', { name, email, phone, numbers: selectedNumbers, totalPrice }); // Depuración
+        // Depuración: Verificar selectedNumbers antes de enviar
+        console.log('Formulario enviado:', { name, email, phone, numbers: selectedNumbers, totalPrice });
 
         try {
             // Validar que los números no estén bloqueados en Firestore
@@ -207,6 +208,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // Guardar una copia de selectedNumbers para el mensaje de WhatsApp
+            const numbersForMessage = [...selectedNumbers];
+
             // Guardar la participación en Firestore
             await saveParticipation({ name, email, phone, numbers: selectedNumbers, totalPrice });
 
@@ -214,8 +218,9 @@ document.addEventListener('DOMContentLoaded', () => {
             await saveBlockedNumbers(selectedNumbers);
 
             // Enviar mensaje a WhatsApp
-            const yourPhoneNumber = '+529996172863'; // Reemplaza con tu número de WhatsApp (ej. +525512345678)
-            const message = `Nueva participación en la rifa:\nNombre: ${name}\nCorreo: ${email}\nTeléfono: ${phone || 'No proporcionado'}\nNúmeros: ${selectedNumbers.join(', ')}\nTotal: $${totalPrice.toFixed(2)}`;
+            const yourPhoneNumber = '+1234567890'; // Reemplaza con tu número de WhatsApp (ej. +525512345678)
+            const message = `Nueva participación en la rifa:\nNombre: ${name}\nCorreo: ${email}\nTeléfono: ${phone || 'No proporcionado'}\nNúmeros: ${numbersForMessage.length > 0 ? numbersForMessage.sort((a, b) => a - b).join(', ') : 'Ninguno'}\nTotal: $${totalPrice.toFixed(2)}`;
+            console.log('Enviando mensaje a WhatsApp, números:', numbersForMessage); // Depuración
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/${yourPhoneNumber}?text=${encodedMessage}`;
             window.open(whatsappUrl, '_blank'); // Abrir WhatsApp en una nueva pestaña/ventana
