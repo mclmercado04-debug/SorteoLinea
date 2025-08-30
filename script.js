@@ -24,8 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Depuración: Verificar que las celdas se encuentren (debería ser 25)
     console.log('Celdas encontradas:', cells.length);
 
-    // Inicializar todas las celdas como seleccionables (remueve la clase 'blocked')
-    cells.forEach(cell => cell.classList.remove('blocked'));
+    // Inicializar todas las celdas como seleccionables (remueve la clase 'blocked' y 'reserved')
+    cells.forEach(cell => {
+        cell.classList.remove('blocked');
+        cell.classList.remove('reserved');
+    });
 
     // Variable para almacenar los números bloqueados desde Firebase
     let blockedNumbers = [];
@@ -62,12 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
         cells.forEach(cell => {
             const number = parseInt(cell.textContent); // Obtener el número de la celda
             if (blockedNumbers.includes(number)) {
-                // Si el número está bloqueado, añadir clase 'blocked'
+                // Si el número está bloqueado, añadir clase 'blocked' y quitar 'selected' y 'reserved'
                 cell.classList.add('blocked');
+                cell.classList.remove('selected', 'reserved');
                 // Si el número estaba seleccionado, deseleccionarlo
                 if (selectedNumbers.includes(number)) {
                     selectedNumbers = selectedNumbers.filter(num => num !== number);
-                    cell.classList.remove('selected');
                 }
             } else {
                 // Si el número no está bloqueado, quitar clase 'blocked'
@@ -111,10 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
         cell.addEventListener('click', () => {
             const number = parseInt(cell.textContent); // Obtener el número de la celda
             console.log(`Clic en celda ${number}`); // Depuración
-            if (cell.classList.contains('blocked')) {
-                // Mostrar toast si la celda está bloqueada
-                showToast('Número ya comprado.');
-                console.log(`Celda ${number} bloqueada, no se puede seleccionar`); // Depuración
+            if (cell.classList.contains('blocked') || cell.classList.contains('reserved')) {
+                // Mostrar toast si la celda está bloqueada o reservada
+                showToast(cell.classList.contains('blocked') ? 'Número ya comprado.' : 'Número reservado.');
+                console.log(`Celda ${number} ${cell.classList.contains('blocked') ? 'bloqueada' : 'reservada'}, no se puede seleccionar`); // Depuración
                 return;
             }
             
@@ -208,8 +211,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Guardar una copia de selectedNumbers para el mensaje de WhatsApp
+            // Guardar una copia de selectedNumbers para el mensaje de WhatsApp y el estado reservado
             const numbersForMessage = [...selectedNumbers];
+
+            // Marcar las celdas como reservadas
+            cells.forEach(cell => {
+                const number = parseInt(cell.textContent);
+                if (numbersForMessage.includes(number)) {
+                    cell.classList.add('reserved');
+                    cell.classList.remove('selected');
+                }
+            });
 
             // Guardar la participación en Firestore
             await saveParticipation({ name, email, phone, numbers: selectedNumbers, totalPrice });
@@ -218,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
             await saveBlockedNumbers(selectedNumbers);
 
             // Enviar mensaje a WhatsApp
-            const yourPhoneNumber = '+529996172863'; // Reemplaza con tu número de WhatsApp (ej. +525512345678)
+            const yourPhoneNumber = '+1234567890'; // Reemplaza con tu número de WhatsApp (ej. +525512345678)
             const message = `Nueva participación en la rifa:\nNombre: ${name}\nCorreo: ${email}\nTeléfono: ${phone || 'No proporcionado'}\nNúmeros: ${numbersForMessage.length > 0 ? numbersForMessage.sort((a, b) => a - b).join(', ') : 'Ninguno'}\nTotal: $${totalPrice.toFixed(2)}`;
             console.log('Enviando mensaje a WhatsApp, números:', numbersForMessage); // Depuración
             const encodedMessage = encodeURIComponent(message);
@@ -227,7 +239,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Reiniciar la selección
             selectedNumbers = [];
-            cells.forEach(cell => cell.classList.remove('selected'));
             updateUI();
             // Ocultar el modal
             modal.style.display = 'none';
@@ -236,8 +247,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             // Manejar errores al guardar en Firestore
             console.error('Error al registrar participación:', error);
+            // Quitar la clase 'reserved' si hay un error
+            cells.forEach(cell => {
+                const number = parseInt(cell.textContent);
+                if (numbersForMessage.includes(number)) {
+                    cell.classList.remove('reserved');
+                }
+            });
             showToast('Error al registrar. Intenta de nuevo.');
         }
     });
 });
-
