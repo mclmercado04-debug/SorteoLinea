@@ -49,10 +49,10 @@ header p {
     text-align: center; /* Centra el texto en las celdas */
     font-size: 1.8em; /* Tamaño de fuente grande para los números */
     font-weight: bold; /* Números en negritas */
-    color: #0000FF; /* Color azul para los números */
-    background-color: rgba(128, 128, 128, 0.25); /* Fondo gris semitransparente */
+    color: #000; /* Texto negro para números disponibles */
+    background-color: #fff; /* Fondo blanco para números disponibles */
     padding: 15px; /* Espacio interior en las celdas */
-    transition: background-color 0.3s; /* Transición suave para cambios de color */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave para cambios de color */
     cursor: pointer; /* Cursor de mano para indicar que es interactivo */
 }
 
@@ -67,9 +67,15 @@ header p {
 }
 
 .rifa-table td.blocked {
-    background-color: rgba(255, 255, 255, 0.5); /* Fondo blanco semitransparente para celdas bloqueadas */
-    color: #333; /* Texto gris oscuro para celdas bloqueadas */
+    background-color: rgba(128, 128, 128, 0.25); /* Fondo gris con 25% de opacidad */
+    color: #0000FF; /* Texto azul para números bloqueados */
     cursor: not-allowed; /* Cursor de no permitido para celdas bloqueadas */
+}
+
+.rifa-table td.reserved {
+    background-color: #fff; /* Fondo blanco para números reservados */
+    color: #FF0000; /* Texto rojo para números reservados */
+    cursor: not-allowed; /* Cursor de no permitido para evitar interacción */
 }
 
 /* Estilos del contenedor de botones */
